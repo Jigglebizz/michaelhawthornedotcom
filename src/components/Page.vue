@@ -1,10 +1,6 @@
 <template>
   <v-container pa-0 fluid>
     <v-layout justify-start align-space-around column fill-height>
-      <!--<v-flex pa-6 ma-0 hidden-sm-and-down md12 fluid>
-        <v-card ma-0 pa-3> &nbsp;
-        </v-card>
-      </v-flex>-->
       <v-flex ma-0 pa-0 xs12 fluid>
         <v-card dark tile color="primary">
           <v-card-text>

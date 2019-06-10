@@ -1,6 +1,6 @@
 <template>
   <v-container fluid pa-3>
-    <v-timeline align-top>
+    <v-timeline class="align-top hidden-sm-and-down">
       <v-timeline-item
         v-for="(item, i) in experiences"
         :key="i"
@@ -20,66 +20,32 @@
           <v-card-title title>
             {{item.title}}
           </v-card-title>
-          <span v-if="item.content.length > 1">
-            <v-card-text class="white text--primary">
-              <v-window v-model="item.contentSelection">
-                <v-window-item
-                  v-for="(content, j) in item.content"
-                  :key="j"
-                  :value="j"
-                >
-                  <WorkCard v-bind:content="content" />
-                </v-window-item>
-              </v-window>
-          </v-card-text>
-          <v-card-actions class="justify-space-between white text--primary">
-            <v-btn
-              :color="item.color"
-              flat
-              icon
-              @click="prev(item)"
-            >
-              <v-icon light>chevron_left</v-icon>
-            </v-btn>
-            <v-item-group
-              v-model="item.contentSelection"
-              class="text-xs-center"
-              mandatory
-            >
-              <v-item
-                v-for="n in item.content.length"
-                :key="`btn-${n}`"
-              >
-                <v-btn
-                  slot-scope="{ active, toggle }"
-                  :input-value="active"
-                  :color="item.color"
-                  flat
-                  icon
-                  @click="toggle(item)"
-                >
-                  <v-icon>fiber_manual_record</v-icon>
-                </v-btn>
-              </v-item>
-            </v-item-group>
-            <v-btn
-              :color="item.color"
-              flat
-              icon
-              @click="next(item)"
-            >
-              <v-icon>chevron_right</v-icon>
-            </v-btn>
-          </v-card-actions>
-          </span>
-          <span v-else>
-            <v-card-text class="white text--primary">
-              <WorkCard v-bind:content="item.content[0]" />
-            </v-card-text>
-          </span>
+          <WorkCard
+            :color="item.color"
+            :content="item.content"
+          />
         </v-card>
       </v-timeline-item>
     </v-timeline>
+    <v-layout column class="hidden-md-and-up">
+      <v-card
+        v-for="(item, i) in experiences"
+        :key="i"
+        :color="item.color"
+        dark
+        py-3
+      >
+        <v-card-title title>
+          {{item.name}}
+          <br />
+          {{item.title}} ({{item.period}})
+        </v-card-title>
+        <WorkCard
+          :color="item.color"
+          :content="item.content"
+        />
+      </v-card>
+    </v-layout>
   </v-container>
 </template>
 
@@ -91,19 +57,6 @@ export default {
   methods: {
     getTextStyle: function (item) {
       return 'color:' + item.color
-    },
-    prev: function (item) {
-      console.log('prev')
-      item.contentSelection = item.contentSelection - 1 < 0
-        ? item.content.length - 1
-        : item.contentSelection - 1
-    },
-    next: function (item) {
-      console.log(item.name)
-      item.contentSelection = item.contentSelection + 1 === length
-        ? 0
-        : item.contentSelection + 1
-      console.log(item.contentSelection)
     }
   },
   data: function () {
@@ -114,7 +67,6 @@ export default {
           color: '#f31212',
           period: '2017-Present',
           title: 'Director of Software Development',
-          contentSelection: 0,
           content: [
             {
               text: `After the merger of Dell and EMC, several of my work friends were let go. \
@@ -156,7 +108,6 @@ export default {
           color: '#2b91d7',
           period: '2012-2017',
           title: 'Software Engineer II',
-          contentSelection: 0,
           content: [
             {
               text: `My post-college career started at EMC, before the merger with Dell. \
@@ -205,7 +156,6 @@ export default {
           color: '#6e7b84',
           period: '2010-2012',
           title: 'Business Process Analyst and Software Engineer',
-          contentSelection: 0,
           content: [
             {
               text: `UXB required an improved process for their expense reports. \
@@ -232,7 +182,6 @@ export default {
           color: '#e97e1b',
           period: '2009-2010',
           title: 'Undergraduate Research Assistant',
-          contentSelection: 0,
           content: [
             {
               text: `At DISIS, my project was Virginia Tech's Linux Laptop Orchestra (L2Ork). \

@@ -1,6 +1,6 @@
 <template>
   <v-container fluid pa-3>
-    <v-timeline class="align-top hidden-sm-and-down">
+    <v-timeline align-top class="hidden-sm-and-down">
       <v-timeline-item
         v-for="(item, i) in experiences"
         :key="i"
@@ -95,9 +95,9 @@ export default {
               image: require('@/assets/wiserces.jpg')
             },
             {
-              text: `It became apparent that our customers had trouble logging into a Windows machine for managing the system. Our next goal would be \
-                delivering a web application for system administration. I decided to hire a contractor to get us started, and I soon took over web development full time. \
-                I had never done any kind of web development before, but the "WISER Way" says that no engineering challenge is a roadbloack. \
+              text: `It became apparent that our customers were in need of a solution that didn't require them to log into a Windows machine. Our next goal would be \
+                delivering a web application for system administration. Nobody at the company had any web experience (and we would not able to hire an engineer full time), \
+                but this was a completely necessary deliverable. I decided to hire a part-time contractor to get us started, and I soon took over web development full time. \
                 I managed to create a web interface that offers a high-speed visual display of the system's location data with a user-friendly management console.`,
               image: null
             }
@@ -195,8 +195,8 @@ export default {
               image: require('@/assets/l2orkspeaker.jpg')
             },
             {
-              text: `One of the coolest things about this project is that I've run into several musicians and devs at hack-a-thons who have used my \
-                drivers to enable their music and personal projects. `
+              text: `One of the coolest things about this project is how prolific it's been. I've run into several musicians and devs at hack-a-thons who have used my \
+                drivers to enable their music and personal projects. This has been really cool to see!`
             }
           ]
         }

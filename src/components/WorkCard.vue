@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <span ref="topLevel">
     <span v-if="content.length > 1">
       <v-card-text class="white text--primary">
         <v-window v-model="contentSelection">
@@ -76,6 +76,15 @@ export default {
       this.contentSelection = this.contentSelection + 1 === this.content.length
         ? 0
         : this.contentSelection + 1
+    }
+  },
+  watch: {
+    contentSelection: function (newVal, oldVal) {
+      this.$vuetify.goTo(this.$refs.topLevel.parentElement, {
+        duration: 200,
+        offset: 0,
+        easing: 'easeInOutCubic'
+      })
     }
   },
   data: function () {

@@ -20,6 +20,8 @@
                       <v-icon>work</v-icon>
                     </v-btn>
                   </router-link>
+                </v-flex>
+                <v-flex shrink>
                   <router-link to="/Play">
                     <v-btn fab small dark color="light-blue">
                       <v-icon>music_note</v-icon>
@@ -60,13 +62,6 @@ export default {
     Play,
     Contact
   },
-  computed: {
-    bigScreen: function () {
-      console.log(this.$vuetify.breakpoint.mdAndUp)
-      return this.$vuetify.breakpoint.mdAndUp
-    }
-  },
-
   data: function () {
     return {
       portrait: require('@/assets/portrait.jpg'),
